@@ -4,6 +4,10 @@ ENV HOME=/home/default
 
 WORKDIR /home/default
 USER 0
+
+ADD requirements.txt /
+ADD bw /usr/local/bin
+
 RUN \
   dnf -y install jq unzip && \
   dnf clean all -y && \
@@ -14,9 +18,9 @@ RUN \
   chown -R 1001:0 /home/default && \
   curl -Lo /tmp/bw-linux.zip $(curl -s https://api.github.com/repos/bitwarden/clients/releases | jq -r 'first(.[] | select(.tag_name|test("cli-."))) | .assets[] | select(.name|test("bw-linux.*zip")) | .browser_download_url') && \
   unzip /tmp/bw-linux.zip -d /usr/local/bin/ && \
-  chmod +x /usr/local/bin/bw
+  mv /usr/local/bin/bw /usr/local/bin/bwcli && \
+  chmod +x /usr/local/bin/bwcli /usr/local/bin/bw
 
-ADD requirements.txt /
 USER 1001
 
 # Install the dependencies
