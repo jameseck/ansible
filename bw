@@ -13,7 +13,7 @@
 # bitwarden cli. The default is 'bwcli' stored in ~/bin
 
 # Installation of the real bitwarden CLI
-bwcmd="${HOME}/bin/bwcli"
+bwcmd="/usr/local/bin/bwcli"
 # Default socket location
 basock="${HOME}/.bitagent.sock"
 # This assumes you've run a `go install` to install bitagent

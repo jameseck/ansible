@@ -9,7 +9,7 @@ ADD requirements.txt /
 ADD bw /usr/local/bin
 
 RUN \
-  dnf -y install jq unzip && \
+  dnf -y install jq unzip nmap-ncat && \
   dnf clean all -y && \
   mkdir -m 0775 /data && \
   chown -R 1001:0 /data && \
