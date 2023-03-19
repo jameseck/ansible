@@ -2,14 +2,15 @@ FROM registry.access.redhat.com/ubi8/python-38:latest
 
 ENV HOME=/home/default
 
-WORKDIR /workdir
+WORKDIR /home/default
 USER 0
 RUN \
-  mkdir -m 0770 /home/default && \
-  chown -R 1001:0 /home/default && \
+  mkdir -m 0775 /data && \
+  chown -R 1001:0 /data && \
   usermod -d /home/default default && \
-  chown -R 1001:0 /workdir && \
-  chmod 0775 /workdir
+  chmod 0770 /home/default && \
+  chown -R 1001:0 /home/default
+
 ADD requirements.txt /
 USER 1001
 
