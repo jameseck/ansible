@@ -17,8 +17,8 @@ RUN \
   chmod 0770 /home/default && \
   chown -R 1001:0 /home/default && \
   curl -Lo /tmp/bw-linux.zip $(curl -s https://api.github.com/repos/bitwarden/clients/releases | jq -r 'first(.[] | select(.tag_name|test("cli-."))) | .assets[] | select(.name|test("bw-linux.*zip")) | .browser_download_url') && \
-  unzip /tmp/bw-linux.zip -d /usr/local/bin/ && \
-  mv /usr/local/bin/bw /usr/local/bin/bwcli && \
+  unzip /tmp/bw-linux.zip -d /tmp && \
+  mv /tmp/bw /usr/local/bin/bwcli && \
   chmod +x /usr/local/bin/bwcli /usr/local/bin/bw
 
 USER 1001
