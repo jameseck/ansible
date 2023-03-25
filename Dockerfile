@@ -26,3 +26,7 @@ USER 1001
 # Install the dependencies
 RUN pip install -U "pip>=23.0.1" && \
     pip install -r /requirements.txt
+
+ADD --chmod=0755 run.sh /
+
+ENTRYPOINT ["/run.sh"]
