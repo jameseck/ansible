@@ -10,9 +10,9 @@ podman run \
   -e SSH_AUTH_SOCK=/ssh-agent \
   -e HOME=/home/default \
   -v "${SSH_AUTH_SOCK}:/ssh-agent:Z" \
+  -v "${HOME}/.bitagent.sock:/home/default/.bitagent.sock:Z" \
+  -v "${HOME}/.config/Bitwarden CLI:/home/default/.config/Bitwarden CLI:Z" \
   -v "${HOME}/.ssh:/home/default/.ssh:Z" \
   -v "$(pwd):/data:Z" \
-  --entrypoint bash \
   ghcr.io/jameseck/ansible210:latest \
-  $@
-
+  bash -c "$@"

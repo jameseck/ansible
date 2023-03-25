@@ -1,0 +1,5 @@
+---
+roles:
+  - name: ansible-modules-bitwarden
+    src: git+https://github.com/c0sco/ansible-modules-bitwarden
+    version: master
