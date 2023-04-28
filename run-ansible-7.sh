@@ -15,4 +15,4 @@ podman run \
   -v "${HOME}/.ssh:/home/default/.ssh:Z" \
   -v "$(pwd):/data:Z" \
   ghcr.io/jameseck/ansible-7.5.0:latest \
-  bash -c "$@"
+  bash -c "$(printf ' %q' "$@")"
