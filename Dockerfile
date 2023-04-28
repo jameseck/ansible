@@ -1,13 +1,14 @@
 FROM registry.access.redhat.com/ubi8/python-38:latest
 
 ARG ANSIBLE_VERSION
+ENV ANSIBLE_VERSION=${ANSIBLE_VERSION}
 
 ENV HOME=/home/default
 
 WORKDIR /home/default
 USER 0
 
-ADD requirements_{ANSIBLE_VERSION}.txt /
+ADD requirements_${ANSIBLE_VERSION}.txt /
 ADD bw /usr/local/bin
 
 RUN \
@@ -27,7 +28,7 @@ USER 1001
 
 # Install the dependencies
 RUN pip install -U "pip>=23.0.1" && \
-    pip install -r /requirements_{ANSIBLE_VERSION}.txt
+    pip install -r "/requirements_${ANSIBLE_VERSION}.txt"
 
 ADD --chmod=0755 run.sh /
 
