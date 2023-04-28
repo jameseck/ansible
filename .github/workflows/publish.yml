@@ -75,8 +75,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           #context: "{{defaultContext}}:src"
-        build-args: |
-          ANSIBLE_VERSION=${{ matrix.ansible_version }}
+          build-args: |
+            ANSIBLE_VERSION=${{ matrix.ansible_version }}
           context: "{{defaultContext}}"
           push: ${{ github.event_name != 'pull_request' }} # Don't push on PR
           tags: ${{ steps.meta.outputs.tags }}
