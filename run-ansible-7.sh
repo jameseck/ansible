@@ -14,5 +14,5 @@ podman run \
   -v "${HOME}/.config/Bitwarden CLI:/home/default/.config/Bitwarden CLI:Z" \
   -v "${HOME}/.ssh:/home/default/.ssh:Z" \
   -v "$(pwd):/data:Z" \
-  ghcr.io/jameseck/ansible-2.10.17:latest \
+  ghcr.io/jameseck/ansible-7.5.0:latest \
   bash -c "$@"
