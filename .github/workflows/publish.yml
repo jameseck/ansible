@@ -19,7 +19,7 @@ jobs:
   build:
     strategy:
       matrix:
-        ansible_version: [2.10.4, 7.5.0]
+        ansible_version: [2.10.17, 7.5.0]
 
     runs-on: ubuntu-latest
     permissions:
