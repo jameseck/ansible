@@ -9,7 +9,7 @@ WORKDIR /home/default
 USER 0
 
 ADD requirements_${ANSIBLE_VERSION}.txt /
-#ADD bw /usr/local/bin
+ADD bw /usr/local/bin
 
 RUN \
   dnf -y install jq unzip nmap-ncat && \
