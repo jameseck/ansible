@@ -1,4 +1,4 @@
-FROM registry.access.redhat.com/ubi8/python-38:latest
+FROM registry.access.redhat.com/ubi8/python-39:latest
 
 ARG ANSIBLE_VERSION
 ENV ANSIBLE_VERSION=${ANSIBLE_VERSION}
