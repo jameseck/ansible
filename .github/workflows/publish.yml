@@ -30,11 +30,6 @@ jobs:
       id-token: write
 
     steps:
-      - id: ansible_version
-        uses: ASzc/change-string-case-action@v1
-        with:
-          string: ${{ matrix.ansible_version }}
-
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -69,7 +64,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ steps.ansible_version.uppercase }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-${{ matrix.ansible_version }}
           tags: |
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
 
@@ -80,6 +75,8 @@ jobs:
         uses: docker/build-push-action@v4
         with:
           #context: "{{defaultContext}}:src"
+        build-args: |
+          ANSIBLE_VERSION=${{ matrix.ansible_version }}
           context: "{{defaultContext}}"
           push: ${{ github.event_name != 'pull_request' }} # Don't push on PR
           tags: ${{ steps.meta.outputs.tags }}
