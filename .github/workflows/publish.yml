@@ -17,6 +17,9 @@ env:
 
 jobs:
   build:
+    strategy:
+      matrix:
+        ansible_version: [2.10.4, 8.5.0]
 
     runs-on: ubuntu-latest
     permissions:
@@ -27,6 +30,11 @@ jobs:
       id-token: write
 
     steps:
+      - id: ansible_version
+        uses: ASzc/change-string-case-action@v1
+        with:
+          string: ${{ matrix.ansible_version }}
+
       - name: Checkout repository
         uses: actions/checkout@v3
 
@@ -61,7 +69,7 @@ jobs:
         uses: docker/metadata-action@v4
         with:
           images: |
-            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+            ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}-{{ steps.ansible_version.uppercase }}
           tags: |
             type=raw,value=latest,enable=${{ github.ref == format('refs/heads/{0}', github.event.repository.default_branch) }}
 

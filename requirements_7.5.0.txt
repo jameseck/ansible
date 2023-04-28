@@ -1,0 +1,11 @@
+ansible==7.5.0
+molecule==5.0.0
+molecule-podman==2.0.3
+molecule[lint]
+testinfra
+ansible-lint
+flake8
+#dnf
+openshift
+kubernetes-validate
+pynetbox
